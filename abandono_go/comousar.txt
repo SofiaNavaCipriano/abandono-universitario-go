@@ -1,0 +1,98 @@
+========================================
+  GUIA DE USO - abandono_go
+  Prediccion de Abandono Universitario
+  con Regresion Logistica en Go
+========================================
+
+1. REQUISITOS
+-------------
+- Sistema operativo: Windows, Linux o macOS
+- Go version 1.22.0 o superior
+- Archivo CSV (estudiantes_abandono.csv) en la misma carpeta
+
+2. INSTALACION DE GO (Windows)
+-------------------------------
+Opcion A - con winget (recomendado):
+   winget install GoLang.Go --version 1.22.0
+
+Opcion B - Manual:
+   - Descarga go1.22.0.windows-amd64.msi desde https://go.dev/dl/
+   - Ejecuta el instalador y sigue los pasos
+   - Verifica la instalacion abriendo una NUEVA terminal y ejecutando:
+       go version
+     Debe mostrar: go version go1.22.0 windows/amd64
+
+3. VERIFICAR INSTALACION
+-------------------------
+Abre una nueva terminal y ejecuta:
+   go version
+
+Si no reconoce el comando, agrega Go al PATH:
+   - Busca "Variables de entorno" en Windows
+   - Agrega C:\Program Files\Go\bin a la variable Path
+   - Reinicia la terminal
+
+4. UBICAR ARCHIVOS
+-------------------
+Asegurate de tener estos archivos en la misma carpeta:
+   - main.go
+   - datos.go
+   - modelo.go
+   - estudiantes_abandono.csv
+   - go.mod
+
+5. EJECUTAR EL PROGRAMA
+------------------------
+Abre una terminal en la carpeta del proyecto y ejecuta:
+
+   go run .
+
+   o bien:
+
+   go run main.go datos.go modelo.go
+
+Esto entrenara el modelo con los 200 estudiantes del CSV,
+mostrara las principales causas de abandono y luego
+preguntara si deseas evaluar un caso ficticio por consola.
+
+6. MODO INTERACTIVO
+--------------------
+Al ejecutar el programa, despues del entrenamiento
+puedes ingresar datos de un estudiante ficticio:
+
+   ¿Deseas evaluar un estudiante? (s/n): s
+
+Luego responde las preguntas:
+  - Edad, genero, estado civil, hijos
+  - Ciudad de origen (selecciona numero de opcion)
+  - Vive fuera, carrera, semestre, promedio
+  - Materias reprobadas, asistencia, tipo bachillerato
+  - Cambio de carrera, ingreso, trabaja, horas trabajo
+  - Beca, tipo de beca
+  - Nivel de estres, satisfaccion, motivacion, salud
+  - Apoyo familiar, distancia, tiempo traslado
+  - Calidad docentes, infraestructura, carga academica
+
+El modelo predecira si el estudiante abandonara o no.
+
+7. COMPILAR (opcional)
+-----------------------
+Para generar un ejecutable:
+   go build -o abandono.exe .
+   ./abandono.exe
+
+8. PROBAR CON NUEVOS DATOS
+----------------------------
+Puedes editar estudiantes_abandono.csv con tus propios datos.
+Cada fila representa un estudiante con 30 columnas.
+La ultima columna (columna 30) es la etiqueta:
+   1 = Abandono
+   0 = No abandono
+
+9. INTERPRETACION DE RESULTADOS
+--------------------------------
+- Peso positivo (+) = aumenta riesgo de abandono
+- Peso negativo (-) = ayuda a retener al estudiante
+- Precision global: porcentaje de aciertos del modelo
+
+========================================
